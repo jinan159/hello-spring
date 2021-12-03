@@ -1,15 +1,17 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     // 클래스에서 공유되는 변수는, 동시성을 제어하기 위해서 실무에서는 'java.util.concurrent.ConcurrentHashMap'을 사용한다.
     private static Map<Long, Member> store = new HashMap<>();
-    // 이 변수도, 동시성 제어를 위해서는 'java.util.concurrent.atomic.AtomicLong'을 사용해야 한다.
 
+    // 이 변수도, 동시성 제어를 위해서는 'java.util.concurrent.atomic.AtomicLong'을 사용해야 한다.
     private static long sequence = 0L;
 
     @Override
